@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>advance15</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+        #btn {
+            position: fixed;
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 150px;
+            background-color: white;
+        }
+        .scroll {
+            position: fixed;
+            top: 20px;
+            left: 40%;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .change {
+            position: fixed;
+            top: 220px;
+            left: 50px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .change p {
+            position: relative;
+            top: 60px;
+        }
+        .input {
+            position: fixed;
+            top: 450px;
+            left: 50px;
+        }
+        .sec {
+            position: fixed;
+            left: 50px;
+            top: 500px;
+        }
+        .sec-val {
+            position: fixed;
+            left: 50px;
+            top: 520px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点我先变红然后变蓝</button>
+    <p class="scroll">这里显示垂直滚动距离：0</p>
+    <div class="change"><p>放上来就变色</p></div>
+    <input type="text" class="input">
+    <select name="" id="" class="sec">
+        <option value="0">hello jirengu</option>
+        <option value="1">我爱前端</option>
+        <option value="2">jquery真好玩</option>
+        <option value="3">端午节快乐</option>
+    </select>
+    <p class="sec-val">这里显示选择内容：1</p>
+    <script src='jquery-3.2.1.js'></script>
+    <script>
+        $('#btn').on('click',function () {
+          $('#btn').css('background','red')
+          setTimeout(function () {
+            $('#btn').css('background','blue')
+            setTimeout(function () {
+              $('#btn').css('background','white')
+            },500)
+          },800)
+        })
+        $(window).on('scroll',function () {
+          $('.scroll').text('这里显示垂直滚动距离：'+$(window).scrollTop())
+        })
+        $('.change').on('mouseenter',function () {
+          $('.change').css('background','red')
+        })
+        $('.change').on('mouseleave',function () {
+          $('.change').css('background','white')
+        })
+        $('.input').on('input propertychange',function () {
+          $('.input').val($('.input').val().toUpperCase())
+        })
+        $('.input').on('focusout',function () {
+          console.log($('.input').val())
+        })
+        $('.sec').on('change',function () {
+            $('.sec-val').text('这里显示选择内容：'+$('.sec').children().eq($(this).val()).text())
+        })
+//
+    </script>
+</body>
+</html>
